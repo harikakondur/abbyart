@@ -1,3 +1,28 @@
+export interface ArtistProfile {
+  sys: {
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  };
+  fields: {
+    name: string;
+    biography: string;
+    artistStatement?: string;
+    profileImage?: {
+      fields: {
+        file: {
+          url: string;
+          fileName: string;
+        };
+      };
+    };
+    socialMediaLinks?: string[];
+    contactEmail: string;
+    websiteTitle?: string;
+    websiteDescription?: string;
+  };
+}
+
 export interface Artwork {
   sys: {
     id: string;
@@ -17,7 +42,7 @@ export interface Artwork {
     }>;
     dimensions?: string;
     price?: number;
-    availability: 'Available' | 'Sold' | 'Reserved';
+    availability: 'Available' | 'Sold' | 'Not for Sale';
     categories?: string[];
     creationDate?: string;
     technique?: string;
@@ -26,31 +51,22 @@ export interface Artwork {
   };
 }
 
-export interface ArtistInfo {
+export interface AboutPage {
   sys: {
     id: string;
     createdAt: string;
     updatedAt: string;
   };
   fields: {
-    biography: string;
-    artistStatement?: string;
-    socialMediaLinks?: string[];
-    contactEmail: string;
-    profileImage?: {
-      fields: {
-        file: {
-          url: string;
-          fileName: string;
-        };
-      };
-    };
-    websiteTitle?: string;
-    websiteDescription?: string;
+    title: string;
+    content: string;
+    seoTitle?: string;
+    seoDescription?: string;
+    seoKeywords?: string[];
   };
 }
 
-export interface ContactSubmission {
+export interface ContactForm {
   sys: {
     id: string;
     createdAt: string;
@@ -62,44 +78,10 @@ export interface ContactSubmission {
     message: string;
     timestamp: string;
     status: 'New' | 'Responded' | 'Spam';
-  };
-}
-
-export interface PurchaseInquiry {
-  sys: {
-    id: string;
-    createdAt: string;
-  };
-  fields: {
-    artworkReference: {
+    artworkReference?: {
       sys: {
         id: string;
       };
     };
-    customerName: string;
-    customerEmail: string;
-    customerPhone?: string;
-    message: string;
-    timestamp: string;
-    status: 'New' | 'Responded' | 'Closed';
-    budgetRange?: string;
-    timeline?: string;
-  };
-}
-
-export interface SiteContent {
-  sys: {
-    id: string;
-    createdAt: string;
-    updatedAt: string;
-  };
-  fields: {
-    pageTitle: string;
-    pageSlug: string;
-    content?: string;
-    seoTitle?: string;
-    seoDescription?: string;
-    seoKeywords?: string[];
-    isActive: boolean;
   };
 }
